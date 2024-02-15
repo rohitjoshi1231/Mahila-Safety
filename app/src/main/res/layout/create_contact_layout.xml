@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#272727"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/create_contact"
+        android:textColor="#CAC5C5"
+        android:textSize="45sp" />
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/rounded_edittext_bg"
+        android:fontFamily="sans-serif"
+        android:hint="@string/first_name"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:textAlignment="textStart"
+        android:textColor="#CAC5C5"
+        android:textColorHint="#6A6868" />
+
+    <EditText
+        android:id="@+id/surname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/rounded_edittext_bg"
+        android:fontFamily="sans-serif"
+        android:hint="@string/surname"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:textAlignment="textStart"
+        android:textColor="#CAC5C5"
+        android:textColorHint="#6A6868" />
+
+    <EditText
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/rounded_edittext_bg"
+        android:fontFamily="sans-serif"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        android:padding="15dp"
+        android:textAlignment="textStart"
+        android:textColor="#CAC5C5"
+        android:textColorHint="#6A6868" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/rounded_button_bg"
+        android:fontFamily="sans-serif"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="#CAC5C5"
+        android:textSize="18sp" />
+
+</LinearLayout>

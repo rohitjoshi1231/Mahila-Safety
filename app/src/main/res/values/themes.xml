@@ -1,0 +1,9 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MahilaSaftey" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">#272727</item>
+    </style>
+
+    <style name="Theme.MahilaSaftey" parent="Base.Theme.MahilaSaftey" />
+</resources>
