@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="app_background">#272727</color>
     <color name="subtext">#BBB5AE</color>
+    <color name="secondaryColor">#969696</color>
 
     <style name="BottomNavIconStyle" parent="Widget.MaterialComponents.BottomNavigationView">
         <!-- Customize the size of the icon -->

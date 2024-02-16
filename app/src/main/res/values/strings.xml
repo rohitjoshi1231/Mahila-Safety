@@ -1,23 +1,24 @@
 <resources>
     <string name="app_name">Mahila Safety</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="women_s_safety_at_hand">Women\'s Safety at Hand</string>
     <string name="swipe_for_assured_security">Swipe for assured security</string>
-    <string name="national_women">National Women\'s Support Helpline</string>
+    <string name="national_women">Women\'s Helpline</string>
     <string name="_181">181</string>
     <string name="child_distress_helpline">Child Distress Helpline</string>
     <string name="_1098">1098</string>
     <string name="report_concerns_or_harassment">Report concerns or harassment</string>
     <string name="_1091">1091</string>
-    <string name="emergency_police_assistance">Emergency Police Assistance</string>
+    <string name="emergency_police_assistance">Police Control Room</string>
     <string name="_100">100</string>
     <string name="_112">112</string>
-    <string name="unified_emergency_helpline_police_fire_medical">Unified Emergency Helpline\nPolice, Fire, Medical</string>
+    <string name="unified_emergency_helpline_police_fire_medical">Emergency Helpline</string>
     <string name="first_name">First name</string>
     <string name="surname">Surname</string>
     <string name="phone">Phone</string>
     <string name="save">Save</string>
     <string name="create_contact">Create contact</string>
     <string name="create_contacts">Create contact</string>
+    <string name="update">Update</string>
+    <string name="all_india_emergency_helpline">All India Emergency Helpline</string>
 </resources>

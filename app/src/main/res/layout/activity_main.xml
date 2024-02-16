@@ -8,11 +8,13 @@
     tools:context=".activities.MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#272727"
@@ -45,6 +47,5 @@
         android:paddingTop="15dp"
         app:itemIconTint="@color/custom_nav"
         app:menu="@menu/menu_bottom_nav" />
-
 
 </RelativeLayout>
