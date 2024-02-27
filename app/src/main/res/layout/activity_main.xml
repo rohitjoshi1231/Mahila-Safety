@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#272727"
+    android:background="@color/app_background"
     tools:context=".activities.MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -17,7 +17,7 @@
             android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#272727"
+            android:background="@color/app_background"
             app:elevation="0dp">
 
             <androidx.appcompat.widget.Toolbar
@@ -38,13 +38,15 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#303030"
+        android:background="@color/app_background"
         android:paddingTop="15dp"
+        app:itemIconSize="23dp"
         app:itemIconTint="@color/custom_nav"
         app:menu="@menu/menu_bottom_nav" />
 

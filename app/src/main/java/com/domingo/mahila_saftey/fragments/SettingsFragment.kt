@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.domingo.mahila_saftey.SharedViewModel
+import com.domingo.mahila_saftey.activities.MainActivity
 import com.domingo.mahila_saftey.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -18,7 +19,7 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
@@ -35,6 +36,46 @@ class SettingsFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+
+        binding.knowYourRights.setOnClickListener {
+            try {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(container!!.id, LawsAndRightsFragment()).addToBackStack(null).commit()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+        binding.privacyLayout.setOnClickListener {
+            try {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(container!!.id, NavigateFragment()).addToBackStack(null).commit()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        binding.crimeAgainstWomen.setOnClickListener {
+            try {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(container!!.id, NewsFragment()).addToBackStack(null).commit()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as? MainActivity)?.disableGestureDetection()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (activity as? MainActivity)?.enableGestureDetection()
     }
 }

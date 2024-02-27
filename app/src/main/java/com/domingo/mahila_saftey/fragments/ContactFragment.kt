@@ -1,5 +1,6 @@
 package com.domingo.mahila_saftey.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
@@ -15,22 +16,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.domingo.mahila_saftey.modules.Contact
-import com.domingo.mahila_saftey.activities.MainActivity
 import com.domingo.mahila_saftey.R
+import com.domingo.mahila_saftey.Utils
 import com.domingo.mahila_saftey.adapters.ContactAdapter
 import com.domingo.mahila_saftey.databinding.FragmentContactBinding
+import com.domingo.mahila_saftey.modules.Contact
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class ContactFragment : Fragment() {
     private lateinit var binding: FragmentContactBinding
-
     private val mContactList = mutableListOf<Contact>()
     private var contactAdapter: ContactAdapter? = null
     private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View {
         binding = FragmentContactBinding.inflate(inflater, container, false)
 
@@ -59,6 +59,7 @@ class ContactFragment : Fragment() {
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun createContact() {
         val builder: AlertDialog.Builder =
             AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme)
@@ -73,30 +74,27 @@ class ContactFragment : Fragment() {
         )
 
         val firstName = EditText(requireContext())
-        firstName.setHintTextColor(MainActivity().customColor(requireContext(), R.color.subtext))
+        firstName.setHintTextColor(Utils.customColor(requireContext(), R.color.subtext))
         firstName.setTextColor(Color.WHITE)
         firstName.inputType = InputType.TYPE_CLASS_TEXT
-        firstName.setPadding(16, 8, 16, 8)
         firstName.background = null
         firstName.hint = "First name"
 
         val lastName = EditText(requireContext())
-        lastName.setHintTextColor(MainActivity().customColor(requireContext(), R.color.subtext))
+        lastName.setHintTextColor(Utils.customColor(requireContext(), R.color.subtext))
         lastName.setTextColor(Color.WHITE)
         lastName.inputType = InputType.TYPE_CLASS_TEXT
-        lastName.setPadding(16, 8, 16, 8)
         lastName.background = null
         lastName.hint = "Last name"
 
         val contactNumber = EditText(requireContext())
         contactNumber.setHintTextColor(
-            MainActivity().customColor(
+            Utils.customColor(
                 requireContext(), R.color.subtext
             )
         )
         contactNumber.setTextColor(Color.WHITE)
         contactNumber.inputType = InputType.TYPE_CLASS_PHONE
-        contactNumber.setPadding(16, 8, 16, 8)
         contactNumber.background = null
         contactNumber.hint = "Phone number"
 

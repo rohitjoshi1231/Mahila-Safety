@@ -1,25 +1,31 @@
 package com.domingo.mahila_saftey.activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
-import android.telephony.SmsManager
 import android.util.Log
+import android.util.TypedValue
 import android.view.GestureDetector
+import android.view.Gravity
 import android.view.MotionEvent
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.domingo.mahila_saftey.R
-import com.domingo.mahila_saftey.SharedViewModel
+import com.domingo.mahila_saftey.Utils
 import com.domingo.mahila_saftey.databinding.ActivityMainBinding
 import com.domingo.mahila_saftey.fragments.ContactFragment
 import com.domingo.mahila_saftey.fragments.HomeFragment
@@ -37,37 +43,39 @@ import java.util.Calendar
 import java.util.Locale
 import kotlin.math.abs
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
+    private var isLocationEnable = false
 
     companion object {
         const val TAG = "MahilaSafety"
-        const val PERMISSION_REQUEST_SMS = 101
         const val REQUEST_LOCATION_PERMISSION = 1
     }
+
+    var isGestureEnabled = true
 
     private var isWhatsappIntentActive = false
     private var whatsappIntent: Intent? = null
     private lateinit var gestureDetector: GestureDetector
     private var job: Job? = null
-    private var message = "Empty"
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(this)
     }
     private lateinit var binding: ActivityMainBinding
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
-    private val sharedViewModel: SharedViewModel by lazy {
-        ViewModelProvider(this@MainActivity)[SharedViewModel::class.java]
-    }
 
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        window.statusBarColor = customColor(this, R.color.app_background)
+        window.statusBarColor = Utils.customColor(this, R.color.app_background)
         toolbar = binding.toolbar
         loadFragment(HomeFragment(), "Home")
+
+        sharedPreferences =
+            getSharedPreferences("sharedContact", Context.MODE_PRIVATE)
 
         binding.bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
@@ -78,12 +86,46 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-
         gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
             override fun onLongPress(e: MotionEvent) {
+                super.onLongPress(e)
+
+
                 val builder: AlertDialog.Builder =
                     AlertDialog.Builder(this@MainActivity, R.style.CustomAlertDialogTheme)
-                builder.setTitle("Ready to send your location through WhatsApp? \uD83D\uDCCD")
+
+                val layout = LinearLayout(this@MainActivity)
+                layout.orientation = LinearLayout.HORIZONTAL
+                layout.gravity = Gravity.CENTER_HORIZONTAL
+                layout.gravity = Gravity.CENTER_VERTICAL
+
+
+                val imageView = ImageView(this@MainActivity)
+                imageView.setImageResource(R.drawable.whatsapp)
+
+                val editText = TextView(this@MainActivity)
+                editText.text = "Send your current location"
+                editText.setTextColor(
+                    ContextCompat.getColor(
+                        this@MainActivity, R.color.white
+                    )
+                )
+                editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
+
+                val params = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                params.setMargins(16, 70, 10, 20)
+                imageView.layoutParams = params
+                editText.layoutParams = params
+
+                layout.addView(imageView)
+                layout.addView(editText)
+
+                builder.setView(layout)
+
+
 
                 builder.setPositiveButton("Sure") { _, _ ->
                     getLocation()
@@ -95,48 +137,72 @@ class MainActivity : AppCompatActivity() {
                 builder.show()
             }
 
+            @SuppressLint("SetTextI18n")
             override fun onScroll(
-                e1: MotionEvent?, e2: MotionEvent, distanceX: Float, distanceY: Float
+                e1: MotionEvent?, e2: MotionEvent, distanceX: Float, distanceY: Float,
             ): Boolean {
 
                 if (abs(distanceY) > abs(distanceX)) {
                     if (distanceY > 0) {
                         val builder: AlertDialog.Builder =
                             AlertDialog.Builder(this@MainActivity, R.style.CustomAlertDialogTheme)
-                        builder.setTitle("Ready to make a call? ☎\uFE0F")
+
+                        val layout = LinearLayout(this@MainActivity)
+                        layout.orientation = LinearLayout.HORIZONTAL
+                        layout.gravity = Gravity.CENTER_HORIZONTAL
+                        layout.gravity = Gravity.CENTER_VERTICAL
+
+
+                        val imageView = ImageView(this@MainActivity)
+                        imageView.setImageResource(R.drawable.baseline_call_24)
+
+                        val editText = TextView(this@MainActivity)
+                        editText.text = "Call Now"
+                        editText.setTextColor(
+                            ContextCompat.getColor(
+                                this@MainActivity, R.color.white
+                            )
+                        )
+                        editText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20f)
+
+                        val params = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        params.setMargins(16, 70, 10, 20)
+                        imageView.layoutParams = params
+                        editText.layoutParams = params
+
+                        layout.addView(imageView)
+                        layout.addView(editText)
+
+                        builder.setView(layout)
 
                         builder.setPositiveButton("Sure") { _, _ ->
-                            makeCall(sharedViewModel.sharedNumber)
+                            val contact = sharedPreferences.getString("sharedNumber", "")
+                            if (contact != "") {
+                                makeCall(contact.toString())
+                            } else {
+                                Toast.makeText(
+                                    this@MainActivity, "No contact to call", Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                         builder.setNegativeButton("Cancel") { dialog, _ ->
                             dialog.dismiss()
                         }
-
-                        builder.show()
-
-                    } else {
-                        val builder: AlertDialog.Builder =
-                            AlertDialog.Builder(this@MainActivity, R.style.CustomAlertDialogTheme)
-                        builder.setTitle("Send location via SMS? \uD83D\uDCCD")
-
-                        builder.setPositiveButton("Sure") { _, _ ->
-                            send()
-                        }
-                        builder.setNegativeButton("Cancel") { dialog, _ ->
-                            dialog.dismiss()
-                        }
-
                         builder.show()
                     }
                 }
                 return super.onScroll(e1, e2, distanceX, distanceY)
             }
         })
-    }
 
-
-    fun customColor(context: Context, colorResourceId: Int): Int {
-        return ContextCompat.getColor(context, colorResourceId)
+        if (isLocationEnable) {
+            Toast.makeText(
+                this, "Location services are disabled, please enable location", Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun loadFragment(fragment: Fragment, title: String) {
@@ -149,46 +215,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
-
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         // Pass touch events to gesture detector
-        if (event != null) {
+        if (event != null && isGestureEnabled) {
             gestureDetector.onTouchEvent(event)
         }
         return super.onTouchEvent(event)
     }
 
-    private fun send() {
-        if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.SEND_SMS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this, arrayOf(Manifest.permission.SEND_SMS), PERMISSION_REQUEST_SMS
-            )
-        } else {
-            try {
-                // Check if the message is empty or null
-                if (message.isNotEmpty()) {
-                    try {
-                        val smsManager = SmsManager.getDefault()
-                        smsManager.sendTextMessage(
-                            sharedViewModel.sharedNumber, null, message, null, null
-                        )
-                        Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show()
-                    } catch (e: Exception) {
-                        Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show()
-                        Log.e(TAG, "Error sending SMS: ${e.message}")
-                    }
-                } else {
-                    Toast.makeText(this, "Message body is empty", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(this, "Failed to send message", Toast.LENGTH_SHORT).show()
-                Log.e(TAG, "Error sending SMS: ${e.message}")
-            }
-        }
-    }
 
     private fun getLocation() {
         if (ContextCompat.checkSelfPermission(
@@ -199,11 +233,20 @@ class MainActivity : AppCompatActivity() {
                 this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION_PERMISSION
             )
         } else {
-            job = CoroutineScope(Dispatchers.IO).launch {
-                while (isActive) {
-                    startLocationUpdates()
-                    delay(5000)
+            val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+                    LocationManager.NETWORK_PROVIDER
+                )
+            ) {
+                job = CoroutineScope(Dispatchers.IO).launch {
+                    while (isActive) {
+                        isWhatsappIntentActive = true
+                        startLocationUpdates()
+                        delay(5000)
+                    }
                 }
+            } else {
+                Toast.makeText(this, "Location services are disabled", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -224,16 +267,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendWhatsapp(numbers: String, message: String) {
-        val uri = Uri.parse(
-            "https://api.whatsapp.com/send?phone=$numbers&text=${
-                URLEncoder.encode(
-                    message, "UTF-8"
-                )
-            }"
-        )
-        whatsappIntent = Intent(Intent.ACTION_VIEW, uri)
-        startActivity(whatsappIntent)
+    private fun sendWhatsapp(number: String, message: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(
+                "whatsapp://send?phone=$number&text=${
+                    URLEncoder.encode(
+                        message, "UTF-8"
+                    )
+                }"
+            )
+            startActivity(intent)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error opening WhatsApp: ${e.message}")
+            Toast.makeText(this, "Error opening WhatsApp", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun startLocationUpdates() {
@@ -245,12 +293,12 @@ class MainActivity : AppCompatActivity() {
         ) {
             return
         }
-        val sharedPreferences = getSharedPreferences("sharedContact", Context.MODE_PRIVATE)
-
 
         fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            val sharedPreferences: SharedPreferences =
+                getSharedPreferences("sharedContact", Context.MODE_PRIVATE)
             // Handle the retrieved location
-            if (location != null && !isWhatsappIntentActive) { // Ensure WhatsApp intent is not active
+            if (location != null && isWhatsappIntentActive) { // Ensure WhatsApp intent is not active
                 isWhatsappIntentActive = true
                 val latitude = location.latitude
                 val longitude = location.longitude
@@ -258,8 +306,11 @@ class MainActivity : AppCompatActivity() {
                 val time = getCurrentTime()
                 val message = "$url\n$time"
                 val contactNumber = sharedPreferences.getString("sharedNumber", "")
+
                 if (contactNumber != null) {
-                    sendWhatsapp(contactNumber.toString(), message)
+                    sendWhatsapp(contactNumber, message)
+                } else {
+                    Toast.makeText(this@MainActivity, "Contact is Empty", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -296,9 +347,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        // Cancel any ongoing job (if applicable)
         job?.cancel()
-
         // Reset WhatsApp intent state
         isWhatsappIntentActive = false
         whatsappIntent = null
@@ -307,12 +356,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPause() {
-        // Reset WhatsApp intent state
         isWhatsappIntentActive = false
         job?.cancel()
         super.onPause()
     }
 
+    fun enableGestureDetection() {
+        isGestureEnabled = true
+    }
+
+    fun disableGestureDetection() {
+        isGestureEnabled = false
+    }
+
 }
-
-

@@ -3,33 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#272727"
+    android:background="#252729"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:fontFamily="serif"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif"
         android:padding="10dp"
-        android:text="Update emergency contact"
+        android:text="@string/update_emergency_contact"
         android:textAlignment="textStart"
-        android:textColor="#CAC5C5"
-        android:textSize="20sp" />
+        android:textColor="#F6F1F1"
+        android:textSize="19sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
         android:background="#303030"
         android:elevation="8dp">
 
         <LinearLayout
-            android:id="@+id/layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -69,11 +72,205 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/layout"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <!--    Crime Again Women-->
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/crimeAgainstWomen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout1"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="#303030"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/stay_informed"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/news_on_crime_against_women"
+                android:textColor="@color/secondaryColor"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="14dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/baseline_newspaper_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--    Know your Rights-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/knowYourRights"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crimeAgainstWomen"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="#303030"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/know_your_rights_amp_options"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/india_s_laws_for_women_amp_child_protection_a_quick_guide"
+                android:textColor="@color/secondaryColor"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="14dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/baseline_shield_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Help-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/privacyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/knowYourRights"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="#303030">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgDltIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtRecycleFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/help"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txtRecyclePhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/privacy_policy_app_info"
+                android:textColor="@color/secondaryColor"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgDltIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/phone"
+            android:padding="10dp"
+            android:src="@drawable/baseline_help_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

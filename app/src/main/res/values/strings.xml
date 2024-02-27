@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mahila Safety</string>
+    <string name="app_name">Suraksha</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="women_s_safety_at_hand">Women\'s Safety at Hand</string>
     <string name="swipe_for_assured_security">Swipe for assured security</string>
@@ -18,7 +18,40 @@
     <string name="phone">Phone</string>
     <string name="save">Save</string>
     <string name="create_contact">Create contact</string>
-    <string name="create_contacts">Create contact</string>
+    <string name="create_contacts">Create contacts</string>
     <string name="update">Update</string>
     <string name="all_india_emergency_helpline">All India Emergency Helpline</string>
+    <string name="india_s_laws_for_women_amp_child_protection_a_quick_guide">India\'s Laws for Women
+        &amp; Child Protection</string>
+    <string name="help">Help</string>
+    <string name="privacy_policy_app_info">Privacy Policy, App Info, Instruction</string>
+    <string name="malala_yousafzai">- Malala Yousafzai</string>
+    <string name="quote">I am a woman with a voice, and I will not be silenced.</string>
+    <string name="update_emergency_contact">Update emergency contact</string>
+    <string name="know_your_rights">Know Your Rights</string>
+    <string name="know_your_rights_amp_options">Know Your Rights &amp; Options</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="app_info">App Info</string>
+    <string name="instructions">Swipe Up: Call emergency number instantly.
+        \nLong press: Send discreet location via WhatsApp.
+        \nSet your preferred emergency number first!
+        \nPractice in a safe space. Stay empowered!</string>
+    <string name="next">Next</string>
+    <string name="stay_informed">Stay Informed</string>
+    <string name="news_on_crime_against_women">News on crime against women</string>
+    <string name="title">Title</string>
+    <string name="description">Discreetly send your real-time location to trusted contacts with a swipe.
+        Manage your emergency network and stay informed about women\'s safety news.
+        Suraksha prioritizes your privacy and empowers you to feel secure, wherever you go</string>
+    <string name="crime_against_women">Crime Against Women</string>
+    <string name="_1">Version 1</string>
+    <string name="_description">Description</string>
+    <string name="rohit_joshi">Rohit Joshi</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="riya_ojha">Riya Ojha</string>
+    <string name="designer_descript">Design expertise and value layout suggestions.</string>
+    <string name="copyright">© 2024 Rohit Joshi. All rights reserved</string>
+    <string name="instruction">Instruction</string>
+    <string name="alaram">alaram</string>
+    <string name="_1_feb_2024">1 Feb 2024</string>
 </resources>

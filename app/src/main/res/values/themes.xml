@@ -5,5 +5,9 @@
         <item name="colorPrimary">#272727</item>
     </style>
 
-    <style name="Theme.MahilaSaftey" parent="Base.Theme.MahilaSaftey" />
+    <style name="Theme.MahilaSaftey" parent="Base.Theme.MahilaSaftey">
+
+
+    </style>
+
 </resources>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/helpLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <!--Help-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/privacyPolicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#303030">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgDltIcon1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgDltIcon1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/phone"
+            android:padding="10dp"
+            android:src="@drawable/baseline_insert_drive_file_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Help-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/instructionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#303030">
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/instruction"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif"
+                android:text="Instruction"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/phone"
+            android:padding="10dp"
+            android:src="@drawable/baseline_integration_instructions_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Help-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#303030">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imgDltIcon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtRecycleFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/app_info"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgDltIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/phone"
+            android:padding="10dp"
+            android:src="@drawable/baseline_info_outline_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
